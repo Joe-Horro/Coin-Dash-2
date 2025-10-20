@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.translation    # Binary translation files (regenerate from CSV)
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Import cache (regenerates automatically)
+*.import.*
