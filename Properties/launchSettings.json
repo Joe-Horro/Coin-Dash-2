@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Coin Dash 2": {
+      "commandName": "Project"
+    },
+    "Godot": {
+      "commandName": "Executable",
+      "executablePath": "D:\\Godot\\Godot_v4.5-stable_mono_win64\\Godot_v4.5-stable_mono_win64.exe",
+      "commandLineArgs": "--path. --verbose",
+      "workingDirectory": "D:\\GodotProjects\\coin-dash-2"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgytuakl423dq"]
+
+[ext_resource type="Script" uid="uid://b8joou2ms6ip5" path="res://Main.cs" id="1_r0du0"]
+[ext_resource type="Texture2D" uid="uid://cj46y0rhlhoir" path="res://grass.png" id="1_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://bbfslrf1h8nvv" path="res://Coin.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dqb0g3jl2i2wc" path="res://Player.tscn" id="2_r0du0"]
+[ext_resource type="PackedScene" uid="uid://dyp3g8o1jsobk" path="res://HUD.tscn" id="5_fos0i"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_r0du0")
+CoinScene = ExtResource("2_cm0pq")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_uu6xs")
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_r0du0")]
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource("5_fos0i")]
+
+[connection signal="Hurt" from="Player" to="." method="OnPlayerHurt"]
+[connection signal="Pickup" from="Player" to="." method="OnPlayerPickup"]
+[connection signal="timeout" from="GameTimer" to="." method="OnGameTimerTimeout"]
+[connection signal="StartGame" from="HUD" to="." method="OnHUDStartGame"]

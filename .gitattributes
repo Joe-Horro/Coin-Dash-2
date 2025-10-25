@@ -1,17 +1,2 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
-
-# Normalize text files (like C# scripts) to LF
-*.cs text eol=lf
-*.csproj text eol=lf
-*.sln text eol=lf
-*.gd text eol=lf
-*.tscn text eol=lf
-*.tres text eol=lf
-*.godot text eol=lf
-
-# Ensure binary files are not modified
-*.png binary
-*.jpg binary
-*.ogg binary
-*.wav binary

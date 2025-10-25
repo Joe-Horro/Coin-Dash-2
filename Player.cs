@@ -10,26 +10,29 @@ public partial class Player : Area2D
     [Signal] public delegate void HurtEventHandler();
 
     Vector2 velocity = Vector2.Zero;
-    Vector2 screensize = new Vector2(480, 720);
-    AnimatedSprite2D _animatedSprite;
+    public Vector2 screensize = new(480, 720);
+    AnimatedSprite2D animatedSprite;
 
     public override void _Ready()
     {
-        _animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
     }
 
     public override void _Process(double delta)
     {
         velocity = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         this.Position += velocity * speed * (float)delta;
+        this.Position = new Vector2(Math.Clamp(Position.X, 0, screensize.X),
+                                    Math.Clamp(Position.Y, 0, screensize.Y));
+
 
         if (velocity.Length() > 0)
-            _animatedSprite.Animation = "run";
+            animatedSprite.Animation = "run";
         else
-            _animatedSprite.Animation = "idle";
+            animatedSprite.Animation = "idle";
 
         if (velocity.X != 0) 
-            _animatedSprite.FlipH = velocity.X < 0;
+            animatedSprite.FlipH = velocity.X < 0;
 
 
     }
@@ -38,12 +41,12 @@ public partial class Player : Area2D
     {
         SetProcess(true);
         Position = screensize / 2;
-        _animatedSprite.Animation = "idle";
+        animatedSprite.Animation = "idle";
     }
 
     public void Die()
     {
-        _animatedSprite.Animation = "hurt";
+        animatedSprite.Animation = "hurt";
         SetProcess(false);
     }
 
