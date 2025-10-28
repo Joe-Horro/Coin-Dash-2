@@ -34,6 +34,7 @@ public partial class Main : Node
         {
             level += 1;
             timeLeft += 5;
+            hud.UpdateTime(timeLeft.ToString());
             SpawnCoins();
         }
     }
@@ -70,7 +71,7 @@ public partial class Main : Node
 
     void OnPlayerPickup(string pickupType)
     {
-        score = +1;
+        score += 1;
         hud.UpdateScore(score.ToString());
     }
 
