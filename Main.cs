@@ -15,6 +15,9 @@ public partial class Main : Node
     Player player;
     Timer gameTimer;
     Hud hud;
+    AudioStreamPlayer coinSound;
+    AudioStreamPlayer levelSound;
+    AudioStreamPlayer endSound;
 
     public override void _Ready()
     {
@@ -24,6 +27,9 @@ public partial class Main : Node
         player.Hide();
         gameTimer = GetNode<Timer>("GameTimer");
         hud = GetNode<Hud>("HUD");
+        coinSound = GetNode<AudioStreamPlayer>("CoinSound");
+        levelSound = GetNode<AudioStreamPlayer>("LevelSound");
+        endSound = GetNode<AudioStreamPlayer>("EndSound");
 
         //NewGame();
     }
@@ -31,7 +37,7 @@ public partial class Main : Node
     public override void _Process(double delta)
     {
         if(isPlaying && GetTree().GetNodesInGroup("coins").Count == 0)
-        {
+        {         
             level += 1;
             timeLeft += 5;
             hud.UpdateTime(timeLeft.ToString());
@@ -62,6 +68,7 @@ public partial class Main : Node
             c.Screensize = screensize;
             c.Position = new Vector2((float)GD.RandRange(0, screensize.X), (float)GD.RandRange(0, screensize.Y));
         }
+        levelSound.Play();
     }
 
     void OnPlayerHurt()
@@ -71,6 +78,7 @@ public partial class Main : Node
 
     void OnPlayerPickup(string pickupType)
     {
+        coinSound.Play();
         score += 1;
         hud.UpdateScore(score.ToString());
     }
@@ -89,6 +97,7 @@ public partial class Main : Node
 
     void GameOver()
     {
+        endSound.Play();
         isPlaying = false;
         gameTimer.Stop();
         GetTree().CallGroup("coins", "queue_free");

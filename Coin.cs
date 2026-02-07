@@ -12,7 +12,7 @@ public partial class Coin : Area2D
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
     }
 
-    public async Task Pickup()
+    public async void Pickup()
     {
         collisionShape.SetDeferred("disabled", true);
         var tw = CreateTween().SetParallel().SetTrans(Tween.TransitionType.Quad);

@@ -67,5 +67,5 @@ sprite_frames = SubResource("SpriteFrames_con8o")
 frame = 8
 frame_progress = 0.18911904
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["coins"]]
 shape = SubResource("CircleShape2D_xe4v2")

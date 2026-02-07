@@ -18,7 +18,13 @@ public partial class Hud : CanvasLayer
         timeLabel = GetNode<Label>("MarginContainer/Time");
         message = GetNode<Label>("Message");
         startButton = GetNode<Button>("StartButton");
-        waitTimer = GetNode<Timer>("WaitTimer");
+        waitTimer = GetNode<Timer>("WaitTime");
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+    {
+
     }
 
     public void UpdateScore(string newScore)
